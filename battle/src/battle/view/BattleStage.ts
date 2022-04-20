@@ -64,7 +64,19 @@ class BattleStage extends egret.Sprite
 			}
 		}
     }
-
+    //添加武将
+    public addUnit()
+    {
+        var data = RES.getResByUrl("resource/assets/module/80033/80033010.json");
+        var texture = RES.getResByUrl("resource/assets/module/80033/80033010.png");
+        // let mv=new movi
+        // var mcFactory = new egret.MovieClipDataFactory(data,texture);
+        // var MC = new egret.MovieClip(mcFactory.generateMovieClipData());如果是一个动画不需要再generateMovieClipData()中加参数
+        // MC.x = sky.x;
+        // MC.y = sky.y;
+        // MC.gotoAndPlay(0);
+        // this.addChild( MC);
+    }
     private onchangesize()
     {
 

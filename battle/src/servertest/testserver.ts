@@ -16,7 +16,7 @@ class testserver
         if(!testserver.battledata)
         {
             testserver.battledata=new BattleData()
-            testserver.battledata.setdata({mapId:200})
         }
+        testserver.battledata.setdata({mapId:200})
     }
 }
