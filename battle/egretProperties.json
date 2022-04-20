@@ -16,6 +16,9 @@
       "name": "assetsmanager"
     },
     {
+      "name": "game"
+    },
+    {
       "name": "tween"
     },
     {

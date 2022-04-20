@@ -32,6 +32,7 @@ class BattleStage extends egret.Sprite
     {
         //先清理旧的
         this.drawbg()
+        this.addUnit()
     }
     private drawbg()
     {
@@ -65,18 +66,34 @@ class BattleStage extends egret.Sprite
 		}
     }
     //添加武将
+    private wujiang
+    private texture
     public addUnit()
     {
-        var data = RES.getResByUrl("resource/assets/module/80033/80033010.json");
-        var texture = RES.getResByUrl("resource/assets/module/80033/80033010.png");
-        // let mv=new movi
-        // var mcFactory = new egret.MovieClipDataFactory(data,texture);
-        // var MC = new egret.MovieClip(mcFactory.generateMovieClipData());如果是一个动画不需要再generateMovieClipData()中加参数
-        // MC.x = sky.x;
-        // MC.y = sky.y;
-        // MC.gotoAndPlay(0);
-        // this.addChild( MC);
+        this.wujiang = RES.getResByUrl("resource/assets/module/80033/80033010.json",this.ondata,this);//JSON
     }
+    private ondata(dt)
+    {
+        let self=this;
+        self.texture = RES.getResByUrl("resource/assets/module/80033/80033010.png",function(data){
+            // let bitmap:egret.Bitmap=new egret.Bitmap(data)
+            // self.unitLayer.addChild(bitmap)
+            var mcFactory = new egret.MovieClipDataFactory(dt,data);
+            var MC = new egret.MovieClip(mcFactory.generateMovieClipData())
+            MC.x=MC.y=200
+            MC.gotoAndPlay(0)
+            self.unitLayer.addChild(MC)
+        });
+    }
+    // private onfunc(data)
+    // {
+        
+    //     var mcFactory = new egret.MovieClipDataFactory(this.wujiang,data);
+    //     var MC = new egret.MovieClip(mcFactory.generateMovieClipData())
+    //     MC.x=MC.y=200
+    //     MC.gotoAndPlay(0)
+    //     this.unitLayer.addChild(MC)
+    // }
     private onchangesize()
     {
 
