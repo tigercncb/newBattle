@@ -1,0 +1,127 @@
+{
+    "frames": {
+        "10000.png": {
+            "frame": {
+                "h": 94,
+                "idx": 0,
+                "w": 103,
+                "x": 0,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 425,
+                "y": 394
+            }
+        },
+        "10001.png": {
+            "frame": {
+                "h": 95,
+                "idx": 0,
+                "w": 108,
+                "x": 0,
+                "y": 95
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 425,
+                "y": 393
+            }
+        },
+        "10002.png": {
+            "frame": {
+                "h": 90,
+                "idx": 0,
+                "w": 108,
+                "x": 104,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 413,
+                "y": 398
+            }
+        },
+        "10003.png": {
+            "frame": {
+                "h": 83,
+                "idx": 0,
+                "w": 143,
+                "x": 109,
+                "y": 91
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 405,
+                "y": 405
+            }
+        },
+        "10004.png": {
+            "frame": {
+                "h": 78,
+                "idx": 0,
+                "w": 119,
+                "x": 109,
+                "y": 175
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 405,
+                "y": 410
+            }
+        },
+        "10005.png": {
+            "frame": {
+                "h": 78,
+                "idx": 0,
+                "w": 119,
+                "x": 229,
+                "y": 175
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 405,
+                "y": 410
+            }
+        },
+        "10006.png": {
+            "frame": {
+                "h": 90,
+                "idx": 0,
+                "w": 110,
+                "x": 213,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 419,
+                "y": 398
+            }
+        }
+    },
+    "meta": {
+        "image": "5_3.png",
+        "prefix": "新建文件夹/person_37/5_3/"
+    }
+}

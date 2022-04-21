@@ -1,0 +1,110 @@
+{
+    "frames": {
+        "10000.png": {
+            "frame": {
+                "h": 92,
+                "idx": 0,
+                "w": 76,
+                "x": 0,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 406,
+                "y": 397
+            }
+        },
+        "10001.png": {
+            "frame": {
+                "h": 74,
+                "idx": 0,
+                "w": 70,
+                "x": 77,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 410,
+                "y": 409
+            }
+        },
+        "10002.png": {
+            "frame": {
+                "h": 51,
+                "idx": 0,
+                "w": 70,
+                "x": 77,
+                "y": 75
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 408,
+                "y": 420
+            }
+        },
+        "10003.png": {
+            "frame": {
+                "h": 59,
+                "idx": 0,
+                "w": 70,
+                "x": 0,
+                "y": 93
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 411,
+                "y": 417
+            }
+        },
+        "10004.png": {
+            "frame": {
+                "h": 51,
+                "idx": 0,
+                "w": 65,
+                "x": 71,
+                "y": 127
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 413,
+                "y": 428
+            }
+        },
+        "10005.png": {
+            "frame": {
+                "h": 64,
+                "idx": 0,
+                "w": 70,
+                "x": 137,
+                "y": 127
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 413,
+                "y": 433
+            }
+        }
+    },
+    "meta": {
+        "image": "4_5.png",
+        "prefix": "person_45/4_5/"
+    }
+}

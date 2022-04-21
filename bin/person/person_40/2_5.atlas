@@ -1,0 +1,144 @@
+{
+    "frames": {
+        "10000.png": {
+            "frame": {
+                "h": 108,
+                "idx": 0,
+                "w": 45,
+                "x": 0,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 429,
+                "y": 384
+            }
+        },
+        "10001.png": {
+            "frame": {
+                "h": 108,
+                "idx": 0,
+                "w": 42,
+                "x": 46,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 432,
+                "y": 382
+            }
+        },
+        "10002.png": {
+            "frame": {
+                "h": 95,
+                "idx": 0,
+                "w": 48,
+                "x": 0,
+                "y": 109
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 427,
+                "y": 384
+            }
+        },
+        "10003.png": {
+            "frame": {
+                "h": 95,
+                "idx": 0,
+                "w": 53,
+                "x": 49,
+                "y": 109
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 422,
+                "y": 385
+            }
+        },
+        "10004.png": {
+            "frame": {
+                "h": 108,
+                "idx": 0,
+                "w": 47,
+                "x": 89,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 426,
+                "y": 384
+            }
+        },
+        "10005.png": {
+            "frame": {
+                "h": 108,
+                "idx": 0,
+                "w": 46,
+                "x": 137,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 427,
+                "y": 383
+            }
+        },
+        "10006.png": {
+            "frame": {
+                "h": 95,
+                "idx": 0,
+                "w": 48,
+                "x": 103,
+                "y": 109
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 426,
+                "y": 383
+            }
+        },
+        "10007.png": {
+            "frame": {
+                "h": 94,
+                "idx": 0,
+                "w": 48,
+                "x": 152,
+                "y": 109
+            },
+            "sourceSize": {
+                "h": 900,
+                "w": 900
+            },
+            "spriteSourceSize": {
+                "x": 427,
+                "y": 385
+            }
+        }
+    },
+    "meta": {
+        "image": "2_5.png",
+        "prefix": "person_40/2_5/"
+    }
+}
