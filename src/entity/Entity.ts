@@ -32,7 +32,7 @@ class Entity extends Laya.Sprite {
         this.x==x
         this.y=y     
     }
-    private onLoaded(data)  {
+    private onLoaded()  {
         this.scaleX=this.reverse
         this.roleAni.pivotX=450
         this.roleAni.pivotY=450

@@ -9,7 +9,8 @@ class Player extends Entity
     atkDis:number;			//攻击距离(像素) 最远 (被阻挡时攻击距离有加成)
 	atkDisBase:number;		//默认攻击距离
 	atkDisBest:number;		//最佳攻击距离
-   
+    defPos=[[908,216],[992,326],[836,91],[1082,144],[1149,259],[1006,15]]
+    atkPos=[[234,530],[318,640],[162,405],[118,592],[185,707],[42,463]]
 
 //战斗过程中 位置朝向相关
 	_x:number;	//当前位置x
@@ -36,6 +37,21 @@ class Player extends Entity
         this._x=x;
         this._y=y;
         super.set_pos(x,y)
+    }
+    public targetPos;//战前最终坐标
+    init()
+    {
+        let posArr
+        if(this.uid>0)
+        {
+            this.reverse=1
+            posArr=this.atkPos
+        }else{
+            this.reverse=-1
+            posArr=this.defPos
+        }
+        this.targetPos=posArr[this.place-1];
+        this.setPos(this.targetPos[0],this.targetPos[1])
     }
 }
 //动作
