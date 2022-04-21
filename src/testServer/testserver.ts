@@ -30,12 +30,14 @@ class testserver
                 player.uid=100002211
                 player.isAttk=true
                 player.toward=4
+                testserver.battleData._attArr[place]=player
                 
             }else{
                 player.isPlayGroup=false
                  player.uid=0
                  player.isAttk=false
                  player.toward=2
+                 testserver.battleData._defArr[place]=player
             }
             player.place=place+1
             player.cfgid=i+30

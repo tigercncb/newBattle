@@ -27,6 +27,7 @@ class Entity extends Laya.Sprite {
         this.roleAni.loadAtlas(url, Laya.Handler.create(this, this.onLoaded));
 
     }
+    
     public set_pos(x,y)
     {
         this.x==x

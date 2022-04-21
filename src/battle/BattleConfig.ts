@@ -19,4 +19,8 @@ class BattleConfig
 	public static PLAY_SPEED_NOW:number = 1;   //动画播放速度 
 
 	public static BATTLE_BEGIN_BEFORE_MV:number = 200;
+
+	//远程近程
+	public static ATK_RANGE_SHORT:number = 1;
+	public static ATK_RANGE_LONG:number = 2;
 }

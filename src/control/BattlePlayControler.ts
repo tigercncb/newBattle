@@ -92,6 +92,12 @@ class BattlePlayControler {
         {
             Laya.timer.clear(this,this.onloop)
             SceneManager.instance().bc.bui.over.visible=false
+            if(this.preEndHandler)
+            {
+                this.preEndHandler.run();
+                this.preEndHandler.clear();
+                this.preEndHandler = null;
+            }
         }
     }
 }

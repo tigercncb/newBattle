@@ -1,6 +1,6 @@
 class Player extends Entity
 {
-    
+    type=BattleConfig.UNIT_TYPE_HERO// 1是武将 2是小兵
     index=0//索引
     place//武将站位
     isAttk=true//是否攻击方
@@ -9,10 +9,10 @@ class Player extends Entity
     atkDis:number;			//攻击距离(像素) 最远 (被阻挡时攻击距离有加成)
 	atkDisBase:number;		//默认攻击距离
 	atkDisBest:number;		//最佳攻击距离
-    defPos=[[908,216],[992,326],[836,91],[1082,144],[1149,259],[1006,15]]
-    atkPos=[[234,530],[318,640],[162,405],[118,592],[185,707],[42,463]]
+    leftPos=[[908,216],[992,326],[836,91],[1082,144],[1149,259],[1006,15]]
+    rightPos=[[234,530],[318,640],[162,405],[118,592],[185,707],[42,463]]
 
-//战斗过程中 位置朝向相关
+    //战斗过程中 位置朝向相关
 	_x:number;	//当前位置x
 	_y:number;	//当前位置y
 	
@@ -45,13 +45,17 @@ class Player extends Entity
         if(this.uid>0)
         {
             this.reverse=1
-            posArr=this.atkPos
+            posArr=this.leftPos
         }else{
             this.reverse=-1
-            posArr=this.defPos
+            posArr=this.rightPos
         }
         this.targetPos=posArr[this.place-1];
         this.setPos(this.targetPos[0],this.targetPos[1])
+    }
+    public get  playerCfg()
+    {
+        return playerCfg[this.cfgid]
     }
 }
 //动作

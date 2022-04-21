@@ -54,10 +54,14 @@ public unitsObject:any = {};
         {
             let x_run;
             let y_run;
-            if(player.isAttk==true)
+            if(player.uid>0)
             {
                 x_run = - BattleConfig.BEGIN_RUN_IN_X;
 				y_run = - BattleConfig.BEGIN_RUN_IN_Y;
+                player.pos(player.x+x_run,player.y+y_run)
+            }else{
+                x_run =  BattleConfig.BEGIN_RUN_IN_X;
+				y_run =  BattleConfig.BEGIN_RUN_IN_Y;
                 player.pos(player.x+x_run,player.y+y_run)
             }
         }

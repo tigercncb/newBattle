@@ -26,7 +26,7 @@ class BattleLogic
 			for (var j:number = 0; j < selectSortArr.length; j++ )
 			{
 				var targetPlace:number = selectSortArr[j];
-				// var defenderArmy:BattleUnitData = battleData.getUnitByPlace(!attacker.isAtt, targetPlace, BattleConfig.UNIT_TYPE_SOLDIER);
+				var defenderHero:Player = battleData.getUnitByPlace(!attacker.isAttk, targetPlace, BattleConfig.UNIT_TYPE_HERO);
 				//首选近程(英雄首选英雄 小兵首选小兵)
 				// if(attacker.type == BattleConfig.UNIT_TYPE_SOLDIER)
 				// {
@@ -35,11 +35,11 @@ class BattleLogic
 				// 		defender = defenderArmy;
 				// 		break;
 				// 	}
-				// 	if(defenderHero&&defenderHero.atkRange == BattleConfig.ATK_RANGE_SHORT)
-				// 	{
-				// 		defender = defenderHero;
-				// 		break;
-				// 	}
+					if(defenderHero&&defenderHero.playerCfg.atkRange == BattleConfig.ATK_RANGE_SHORT)
+					{
+						defender = defenderHero;
+						break;
+					}
 				// }else
 				// {
 					/**
@@ -58,6 +58,7 @@ class BattleLogic
 				 */
 				if(defencePri==null)
 				{
+					defencePri = defenderHero;
 					// if(attacker.type == BattleConfig.UNIT_TYPE_SOLDIER)
 					// {
 					// 	if(defenderArmy)
@@ -98,8 +99,9 @@ class BattleLogic
 						
 				// 	}else
 				// 	{
-				// 		var ptarget = 2;
-				// 		battleData.setAtkTarget(attacker.uni_c,battleData.getUnitData(defender.index,ptarget).uni_c);
+					//FIXME:写到了这里，对应BattleLogic第807行
+						var ptarget = 2;
+						// battleData.setAtkTarget(attacker.uni_c,battleData.getUnitData(defender.index,ptarget).uni_c);
 				// 		//选择对位的
 				// 	}
 				// }else

@@ -52,6 +52,7 @@ class SceneManager extends Laya.Sprite {
 		}
 		this.bc.battleui().updateZOrder();
 	}
+    //开始战斗循环 开	始播放循环
     public battleStart(): void {
         //执行跳过 不循环
         if (CampaginLogic.jump) return
