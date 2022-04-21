@@ -4,7 +4,8 @@ class GameMain{
     constructor()
     {
         Laya.init(1334,750, WebGL);
-        this.initScene();
+        Laya.loader.load("res/atlas/comp.atlas",Laya.Handler.create(this,this.initScene))
+        // this.initScene();
     }
     private initScene()
     {
