@@ -31,6 +31,7 @@ class SceneManager extends Laya.Sprite {
             this.procControl.playControl = this.playControl;
         }
         this.procControl.init(this.battleData, Laya.Handler.create(this, this.battleEnd));
+        //战场控制启动战斗
         this.playControl.start(this.battleData, Laya.Handler.create(this, this.battleStart));
         this.refreshUintsZorders();
 		Laya.timer.loop(1000, this, this.refreshUintsZorders);
@@ -52,7 +53,7 @@ class SceneManager extends Laya.Sprite {
 		}
 		this.bc.battleui().updateZOrder();
 	}
-    //开始战斗循环 开	始播放循环
+    //开战前启动完毕后，开始战斗循环 开	始播放循环
     public battleStart(): void {
         //执行跳过 不循环
         if (CampaginLogic.jump) return

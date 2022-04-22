@@ -1,6 +1,7 @@
 class BattleData
 {
     mapId=200
+    static unitcount:number = 0; 			//战斗单元计数，其他参数中的 uni_c
     public _attArr:any[]		= [];					 //攻方单元
 	public _defArr:any[]		= [];					 //守方单元
 	public totalUnitsArr:Player[] = []; //所有单元数组
@@ -32,4 +33,8 @@ class BattleData
 			}
 		}
 	}
+    public setAtkTarget(uni_c,target)
+    {
+
+    }
 }

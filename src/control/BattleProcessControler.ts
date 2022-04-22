@@ -26,6 +26,8 @@ class BattleProcessControler
     //开场技能
     public skillOnStart()
     {
+        //预设攻击目标
+        BattleLogic.setAtkTargetNew(this.battleData);
         return 0
     }
     public frameLoop()

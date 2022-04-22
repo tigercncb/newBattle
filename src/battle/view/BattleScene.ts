@@ -66,6 +66,7 @@ public unitsObject:any = {};
             }
         }
     }
+    //开始跑动进场
     public startRun()
     {
         var maxTime:number = 0;
@@ -89,6 +90,7 @@ public unitsObject:any = {};
         }
         return maxTime
     }
+    //跑完站立
     public runInEnd()
     {
         for (let index = 0; index < this.totalDisArr.length; index++)
@@ -101,6 +103,7 @@ public unitsObject:any = {};
     {
         return this.bui
     }
+    //开始战斗
     private startBattle()
     {
         SceneManager.instance().battleinit()

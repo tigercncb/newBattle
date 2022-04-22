@@ -81,4 +81,13 @@ class playerCfg
         atkTimeCountdown:0,//攻击间隔
         atkRange:1,//近战
     }
+    public static 39={
+        atkDis:4,
+        atkDisBase:4,
+        heroname:"武将10",
+        _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
+	    spd_buff: 1,	//buff对移动速度影响
+        atkTimeCountdown:0,//攻击间隔
+        atkRange:1,//近战
+    }
 }

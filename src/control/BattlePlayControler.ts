@@ -39,26 +39,10 @@ class BattlePlayControler {
 		var runTime:number = SceneManager.instance().bc.startRun();
 		//进场完毕之后处理
 		Laya.timer.once(Math.floor(runTime/BattleConfig.PLAY_SPEED_NOW)+BattleConfig.BATTLE_BEGIN_BEFORE_MV, this, this.runInEnd,[first]);
-
-		var lanid:number = 0;
-		//第一场模拟战斗
-		if(this.data.playType == 2)
-		{
-			lanid = 11;
-		}
-		else
-		{
-			if(first)
-				lanid = this.data.atkBaseNow.lanId;
-			else
-				lanid = this.data.addIsAtk?this.data.atkBaseNow.lanId:this.data.defBaseNow.lanId; 
-		}
-		// if(lanid!=0)
-		// {
-		// 	this.conversationArr = TemplateReader.getTemplateArray(TemplateReader.CONVERSATION,{"gp":lanid});
-		// 	//this.talkBegin(1,first);
-		// }
+        //初始化战前喊话等信息 参照同名文档155
+		
 	}
+    //first true表示首次进入
     runInEnd(first)
     {
         //播放喊话，专属特效动画等
@@ -71,6 +55,7 @@ class BattlePlayControler {
 	talkBegin(when:number,first:boolean):void
     {
         //假设这里停止5秒
+        //备注，源文档有战鼓代码，不确定战鼓是个啥。。暂时未写
         //开始播放进场
         //参照 BattlePlayCOntroler.ts第194行
 		if(when==1)

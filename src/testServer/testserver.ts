@@ -20,7 +20,7 @@ class testserver
 			testserver.battleData = new BattleData();
 		}
         testserver.battleData.mapId=200
-        for(let i=0;i<9;i++)
+        for(let i=0;i<10;i++)
         {
             let place=i%6;
             let player=new Player()
