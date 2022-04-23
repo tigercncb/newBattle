@@ -2,7 +2,7 @@
 class BattleProcessControler
 {
     public playControl:BattlePlayControler;
-    public battleData;
+    public battleData:BattleData;
     public endCallBack;
     public quickEnd;
 
@@ -28,9 +28,73 @@ class BattleProcessControler
     {
         //预设攻击目标
         BattleLogic.setAtkTargetNew(this.battleData);
-        return 0
+        //预设克制关系 141行
+        //BattleLogic.calPowerCorrect(this.battleData);
+        //处理技能激活
+        //	BattleSkillLogic.preActiveSkill(this.battleData);
+        //释放开场技能时候，所有人不能动。costtime
+
+        return 1000
     }
     public frameLoop()
+    {
+        //某技能状态，暂停向下循环。同名文件第379行
+        //战斗结束也不循环
+        //超时也结束战斗396
+        //战斗单元循环 500
+        var frame:number = this.battleData.speedup;
+		var unitLen:number = this.battleData.totalUnitsArr.length;
+        for(var i =0; i<unitLen;i++)
+        {
+            let unit:Player=this.battleData.totalUnitsArr[i]
+            unit.fmloop(this,frame)
+            //播放死亡动画
+            //-------获取目标
+             var defData:Player = this.battleData.getAtkTarget(unit.uni_c);
+             if(defData==null)
+            {
+                defData = BattleLogic.atkTargetRefresh(this.battleData, unit);
+                if(defData==null)
+                {
+                    unit.inplace = true;
+                    continue;
+                }
+            }
+            if(unit.canMove()==false)
+			{
+				continue;
+			}
+            var disSq:number = BattleFormula.calDisSquare(unit.x, unit.y, defData.x, defData.y);
+            unit.inatkRange = BattleFormula.isInAtkDisByPos(disSq, unit.atkDis,defData.radius);
+            //已经在攻击范围内 
+            if(unit.inatkRange)
+            {
+                unit.inplace=true
+            }else{
+                var maxSpeed:number =unit.spdframe*frame;
+                if(unit.inplace==false)
+                {
+                    unit.changeaction(actionState.run)
+                    unit.move(maxSpeed,defData)
+                }
+            }
+        }
+        
+
+
+    }
+    //释放技能
+    public doskill()
+    {
+
+    }
+    //下一组
+    public nextGroup()
+    {
+        //如果没有了下一组，则endCallBack
+    }
+    //直接结算战斗
+	public jumpBattleToEnd()
     {
 
     }

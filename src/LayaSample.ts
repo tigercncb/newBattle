@@ -4,6 +4,12 @@ class GameMain{
     constructor()
     {
         Laya.init(1334,750, WebGL);
+        //ios 帧率降到30
+		// if (SysGameConfig.EquipmentPlatform == EquipmentPlatformType.ios) {
+		// 	Laya.stage.frameRate = Laya.Stage.FRAME_SLOW;
+		// } else {
+		// 	Laya.stage.frameRate = Laya.Stage.FRAME_FAST;
+		// }
         Laya.loader.load("res/atlas/comp.atlas",Laya.Handler.create(this,this.initScene))
         // this.initScene();
     }

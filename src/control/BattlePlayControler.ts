@@ -11,7 +11,7 @@ class BattlePlayControler {
     /**
 	 * 开始播放战斗 播放顺序 双方进场到达指定位置->阵前喊话->播放开场动画->双方释放开场buff->
 	 * 双方开始移动->发生交战->一方全部死亡或者倒计时技术->结束喊话->战斗结算面板
-	 * @param	prePlayEnd 战鼓播放完毕回调
+	 * @param	prePlayEnd 战鼓播放完毕回调 战鼓是个啥？
 	 * @return 
 	*/
 	start(data:BattleData,prePlayEnd:Laya.Handler):void
@@ -23,7 +23,7 @@ class BattlePlayControler {
 			return;
 		}
         //初始化顯示,BattlePlayControler.ts第104行，原初始化背景圖參展對象
-
+        //加载战场UI等
         //跑步入场
         this.playRunIn(true)
     }
@@ -56,7 +56,7 @@ class BattlePlayControler {
     {
         //假设这里停止5秒
         //备注，源文档有战鼓代码，不确定战鼓是个啥。。暂时未写
-        //开始播放进场
+        //开始播放进场，播放指定英雄展示等
         //参照 BattlePlayCOntroler.ts第194行
 		if(when==1)
         {
@@ -66,6 +66,8 @@ class BattlePlayControler {
                 SceneManager.instance().bc.bui.over.visible=true
                 Laya.timer.loop(1000,this,this.onloop)
             // }
+        }else{
+            //打开结算面板
         }
         
     }

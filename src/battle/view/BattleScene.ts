@@ -4,8 +4,6 @@ class BattleScene extends Laya.Sprite
     // unitPosData:Array<Player>
     public totalDisArr:any[] = [];
 
-//英雄单元和主士兵(不包括影子士兵) key为index
-public unitsObject:any = {};
 
     public bui:ui.gameui.BattleSceneUI
     constructor()
@@ -32,37 +30,33 @@ public unitsObject:any = {};
     }
     
     // private nameList:Array<Laya.Label>
-    public addUnits(isreset=false)
+    public addUnits(isreset=false,isrun=true)
     {
         // this.nameList=[]   
         // this.unitPosData=[]  
         for(let i=0;i<this.battledata.totalUnitsArr.length;i++)
         {
             let enit:Player=this.battledata.totalUnitsArr[i]
-                
-            this.addunit(enit,isreset,true)   
+            this.addunit(enit,isreset,enit.isAttk==isrun)   
             
         }
     }
     addunit(player:Player,isreset,needrun)
     {
-        this.unitsObject[player.index]=player
-        player.init()
-        if(!isreset)this.bui.unitLayer.addChild(player)
-        player.changeaction(actionState.idle)
+        player.init(this.PlayerLayer())
         if(needrun)
         {
             let x_run;
             let y_run;
-            if(player.uid>0)
+            if(player.isAttk==true)
             {
                 x_run = - BattleConfig.BEGIN_RUN_IN_X;
 				y_run = - BattleConfig.BEGIN_RUN_IN_Y;
-                player.pos(player.x+x_run,player.y+y_run)
+                player.setPos(player.x+x_run,player.y+y_run)
             }else{
                 x_run =  BattleConfig.BEGIN_RUN_IN_X;
 				y_run =  BattleConfig.BEGIN_RUN_IN_Y;
-                player.pos(player.x+x_run,player.y+y_run)
+                player.setPos(player.x+x_run,player.y+y_run)
             }
         }
     }
@@ -85,7 +79,7 @@ public unitsObject:any = {};
                 var runEnd:Laya.Handler = null;
                 if(fisrt)
 					runEnd= Laya.Handler.create(this, this.runInEnd);
-                    Laya.Tween.to(unit, {x:unit.targetPos[0], y:unit.targetPos[1]}, Math.floor(needtime/BattleConfig.PLAY_SPEED_NOW) , null,runEnd );
+                    Laya.Tween.to(unit, {x:unit.station[0], y:unit.station[1]}, Math.floor(needtime/BattleConfig.PLAY_SPEED_NOW) , null,runEnd );
             }
         }
         return maxTime
@@ -102,6 +96,10 @@ public unitsObject:any = {};
     public battleui()
     {
         return this.bui
+    }
+    public PlayerLayer()
+    {
+        return this.bui.unitLayer
     }
     //开始战斗
     private startBattle()

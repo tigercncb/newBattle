@@ -33,10 +33,68 @@ class BattleLogic {
 			}
 			if (defender == null) defender = defencePri;
 			if (defender) {
-				//对应BattleLogic第807行 FIXME:写到这里
-				// battleData.setAtkTarget(attacker.uni_c,battleData.getUnitData(defender.index,ptarget).uni_c);
+				if(defender.type == BattleConfig.UNIT_TYPE_SOLDIER)
+				{
+
+				}else{
+					battleData.setAtkTarget(attacker.uni_c,defender.uni_c);
+				}
 
 			}
 		}
+	}
+	public static atkTargetRefresh(battleData:BattleData,atkData:Player):Player
+	{
+		//var index:string = atkData.uni_c;
+		//var atkdata:BattleUnitData = battleData.unitsDataObj[index];
+		if (atkData.alive)
+		{
+			//var oldTargetIndex:string = battleData.getAtkTarget(atkData.index);
+			var defData:Player = battleData.getAtkTarget(atkData.uni_c);;
+			var atkTarget:Player = BattleLogic.findAtkTarget(battleData, atkData);
+			if (atkTarget&& (defData==null || defData.uni_c != atkTarget.uni_c))
+			{
+				defData = atkTarget;
+				if (defData!=null)
+				{
+					battleData.setAtkTarget(atkData.uni_c,defData.uni_c);
+					return defData;
+					//battleData.atkTargetList[index] = defData.index;
+				}
+			}
+		}
+	}
+	public static findAtkTarget(battleData:BattleData,atkdata:Player):Player
+	{
+		if (atkdata == null || atkdata.alive == false)
+		{
+			return null;
+		}
+		var mindis:number = 9999;
+		let atkTarget:Player=null;
+		for(var i:number = 0;i<battleData.totalUnitsArr.length;i++)
+		{
+			let defdata:Player=battleData.totalUnitsArr[i]
+			if(defdata&&defdata.alive && defdata.uni_c!=atkdata.uni_c)
+			{
+				if(atkdata.isAttk!=defdata.isAttk)
+				{
+					var dis:number = BattleFormula.calcDistance(atkdata.x,atkdata.y,defdata.x,defdata.y);
+						var inAtkDis:boolean = BattleFormula.isInAtkDis(dis,atkdata.atkDis,defdata.radius);
+						if(inAtkDis)
+						{
+							return defdata;
+						}else
+						{
+							if (dis < mindis)
+							{
+								mindis  = dis;
+								atkTarget = defdata;
+							}
+						}
+				}
+			}
+		}
+		return atkTarget
 	}
 }
