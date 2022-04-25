@@ -18,6 +18,7 @@ class Entity extends Laya.Sprite {
      * @param towardState 方向号
      */
     public loadAni(actionState=1,towardState=1)  {
+        // if(this.action==this.action && towardState==this.toward && this.roleAni) return
         if(this.roleAni)
         {
             this.roleAni.stop()

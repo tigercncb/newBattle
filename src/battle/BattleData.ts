@@ -5,7 +5,7 @@ class BattleData
     public playType:number = 1;				//1正常战斗 2模拟战斗 3战报回放 0测试战斗
     mapId=0
     static unitcount:number = 0; 			//战斗单元计数，其他参数中的 uni_c
-
+	public state:number = 0;				//战斗状态 0还未开始或者播放开场动画中 1战斗进行中 2切换下一队 -1战斗结束
     public totalArrDic:any={}//所有单元
     //假定在战场唯一ID起始位
     public uni_c_player=1000

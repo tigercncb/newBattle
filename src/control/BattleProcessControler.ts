@@ -43,6 +43,11 @@ class BattleProcessControler
         //超时也结束战斗396
         //战斗单元循环 500
         var frame:number = this.battleData.speedup;
+        //战斗结束或者战斗状态为切换下一队都不执行之后逻辑
+		if (this.battleData.state==-1||this.battleData.state==2)
+		{
+			return;
+		}
 		var unitLen:number = this.battleData.totalUnitsArr.length;
         for(var i =0; i<unitLen;i++)
         {
@@ -71,7 +76,8 @@ class BattleProcessControler
             //已经在攻击范围内 
             if(unit.inatkRange)
             {
-                unit.inplace=true               
+                unit.inplace=true   
+                unit.isRuning=false            
                 unit.changeaction(actionState.fight)
                 
 
@@ -79,7 +85,12 @@ class BattleProcessControler
                 var maxSpeed:number =unit.spdframe*frame;
                 if(unit.inplace==false)
                 {
-                    unit.changeaction(actionState.run)
+                    if(unit.isRuning==false)
+                    {
+                        unit.isRuning=true
+                        unit.changeaction(actionState.run)
+                        return
+                    }
                     unit.move(maxSpeed,defData)
                 }
             }

@@ -25,7 +25,7 @@ class Player extends Entity {
     y_old: number = -1;	//几帧前的位置
     tx: number;	//目标位置
     ty: number;	//目标位置
-
+    isRuning=false;//是否在移动中
     public isTeamPlay: boolean = false;		//合击动作中
     public isAtking: boolean = false;		//是否正在播放攻击动作
     //public isHiting:boolean = false;
@@ -36,7 +36,7 @@ class Player extends Entity {
 
     private container: Laya.Sprite
     public changeaction(action: actionState)  {
-        if(action==this.action)return
+        // if(action==this.action)return
         this.action=action
         this.loadAni(action, this.toward)
     }
