@@ -1,5 +1,5 @@
 class BattleLogic {
-	public static priorityTarget: Array<number> = [1, 2, 3, 5, 4, 6]
+	public static priorityTarget: Array<Array<number>> = [[0,2,1,3,5,4],[2,0,1,5,3,4],[1,0,2,4,3,5],[0,2,1,3,5,4],[2,0,1,5,3,4],[1,0,2,4,3,5]]
 	public atkPlace = []
     /**
 	 * 设置初始攻击目标
@@ -17,9 +17,9 @@ class BattleLogic {
 			var defender: Player = null;
 			//优先目标
 			var defencePri: Player = null;
-			var selectSortArr: number[] = this.priorityTarget //battleData.priorityTarget[attacker.place];
+			var selectSortArr: number[] = this.priorityTarget[attacker.place-1];
 			for (var j: number = 0; j < selectSortArr.length; j++) {
-				var targetPlace: number = selectSortArr[j];
+				var targetPlace: number = selectSortArr[j]+1;
 				var defenderHero: Player = battleData.getUnitByPlace(!attacker.isAttk, targetPlace, BattleConfig.UNIT_TYPE_HERO);
 				//首选近程(英雄首选英雄 小兵首选小兵)
 				if (defenderHero && defenderHero.playerCfg.atkRange == BattleConfig.ATK_RANGE_SHORT) {

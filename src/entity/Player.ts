@@ -13,6 +13,7 @@ class Player extends Entity {
     radius:number = 30; 		//运动时碰撞半径
     spdframe:number = 1;  	//每帧移动速度 像素 目前按照60帧计算
     speed=0;//移动速度
+    atkInterval:number;  	//攻击间隔
     defPos = [[908, 216], [992, 326], [836, 91], [1082, 144], [1149, 259], [1006, 15]]
     atkPos = [[234, 530], [318, 640], [162, 405], [118, 592], [185, 707], [42, 463]]
     inplace:boolean=false;//是否已经到达预定位置
@@ -35,6 +36,8 @@ class Player extends Entity {
 
     private container: Laya.Sprite
     public changeaction(action: actionState)  {
+        if(action==this.action)return
+        this.action=action
         this.loadAni(action, this.toward)
     }
     //设置当前坐标
@@ -64,7 +67,8 @@ class Player extends Entity {
         t.container.addChild(t);
         t.setPos(t.station[0], t.station[1])
         let cfg=this.playerCfg;
-        this.atkDis=cfg.atkDis;
+        this.atkDis=cfg.atkDis
+        this.atkDisBest=this.atkDisBase=cfg.atkDisBase
         
     }
     /**
@@ -83,9 +87,18 @@ class Player extends Entity {
 	 */
 	public canMove():boolean
     {
+        if (this.alive==false)
+		{
+			return false;
+		}
+        if(this.inatkRange==true)
+        {
+            return false
+        }
         return true
 
     }
+    //移动
     public move(speed,defdata)
     {
         if(!this.canMove())return
@@ -100,18 +113,4 @@ class Player extends Entity {
         return playerCfg[this.cfgid]
     }
 }
-//动作
-enum actionState {
-    idle = 1,
-    run,
-    die = 4,
-    fight,
-}
-//方向
-enum towardState {
-    down = 1,
-    rightdown,
-    right,
-    rightup,
-    up
-}
+

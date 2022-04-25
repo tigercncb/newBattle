@@ -11,9 +11,28 @@ class BattleFormula
 	public static calcDir(x1:number,y1:number,x2:number,y2:number):number
 	{
 		var angle:number = BattleFormula.calAngle(x1,y1,x2,y2);
-		angle =  (angle+450)%360; 
-		var dir:number = Math.round(angle / 45)%8;
-		return dir;
+		let nA=angle-22.5;
+		if(nA>=-22.5&&nA<22.5) return 1
+		if(nA>=22.5&&nA<67.5) return 1
+		if(nA>=67.5&&nA<112.5) return 1
+		if(nA>=112.5&&nA<157.5) return -1
+		if(nA>=157.5&&nA<202.5) return -1
+		if(nA>=202.5&&nA<247.5) return -1
+		if(nA>=247.5&&nA<292.5) return 1
+		if(nA>=292.5&&nA<337.5) return 1
+	}
+	public static calcToward(x1:number,y1:number,x2:number,y2:number):number
+	{
+		var angle:number = BattleFormula.calAngle(x1,y1,x2,y2);
+		let nA=angle-22.5;
+		if(nA>=-22.5&&nA<22.5) return 3
+		if(nA>=22.5&&nA<67.5) return 2
+		if(nA>=67.5&&nA<112.5) return 1
+		if(nA>=112.5&&nA<157.5) return 2
+		if(nA>=157.5&&nA<202.5) return 3
+		if(nA>=202.5&&nA<247.5) return 4
+		if(nA>=247.5&&nA<292.5) return 5
+		if(nA>=292.5&&nA<337.5) return 4
 	}
     	/**
 	 * 计算两个坐标之间的偏转角度(与X轴的夹角 X右下开始 顺时针)					

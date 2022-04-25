@@ -24,7 +24,6 @@ class BattleConfig
 	public static ATK_RANGE_SHORT:number = 1;
 	public static ATK_RANGE_LONG:number = 2;
 
-	public distanceCheap=10;//距离便宜系数
 
 	//战场循环执行间隔
 	public static BATTLE_LOOP_TIME:number = 16;
@@ -42,9 +41,6 @@ class BattleConfig
 	public static PLAY_SPEED:any[] = [1, 2, 3];
 	//模型播放帧间隔
 	public static UNIT_PLAY_FRAME_TIME:number = 120;
-
-//模型方向
-	public static ANI_RES_DIR:any[] = [0, 1, 2, 3, 4, 3, 2, 1];
 
 	//战斗冲锋速度增加到几倍
 	public static RUSH_SPD_ADD:number = 2;

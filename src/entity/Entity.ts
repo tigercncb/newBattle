@@ -5,7 +5,7 @@ class Entity extends Laya.Sprite {
     //初始位置
     reverse=1//反向 1不反  -1反
     toward=4//初始化时候朝向4 或者2
-    action=1//动作
+    action=0//动作
     entity_Type=1;//实体类型 1角色，2其他物体
     private roleAni: Laya.Animation;
     constructor()  {
@@ -42,4 +42,19 @@ class Entity extends Laya.Sprite {
         this.addChild(this.roleAni)
         this.roleAni.play()
     }
+}
+//动作
+enum actionState {
+    idle = 1,
+    run,
+    die = 4,
+    fight,
+}
+//方向
+enum towardState {
+    down = 1,
+    rightdown,
+    right,
+    rightup,
+    up
 }

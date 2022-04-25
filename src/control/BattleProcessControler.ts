@@ -66,10 +66,15 @@ class BattleProcessControler
 			}
             var disSq:number = BattleFormula.calDisSquare(unit.x, unit.y, defData.x, defData.y);
             unit.inatkRange = BattleFormula.isInAtkDisByPos(disSq, unit.atkDis,defData.radius);
+            unit.toward=BattleFormula.calcToward(unit.x, unit.y, defData.x, defData.y)
+            unit.reverse=BattleFormula.calcDir(unit.x, unit.y, defData.x, defData.y)
             //已经在攻击范围内 
             if(unit.inatkRange)
             {
-                unit.inplace=true
+                unit.inplace=true               
+                unit.changeaction(actionState.fight)
+                
+
             }else{
                 var maxSpeed:number =unit.spdframe*frame;
                 if(unit.inplace==false)
