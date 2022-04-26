@@ -48,6 +48,7 @@ class BattleProcessControler
 		{
 			return;
 		}
+         //战斗单元循环
 		var unitLen:number = this.battleData.totalUnitsArr.length;
         for(var i =0; i<unitLen;i++)
         {

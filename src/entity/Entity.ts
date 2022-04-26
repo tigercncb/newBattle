@@ -2,7 +2,7 @@ class Entity extends Laya.Sprite {
     uid=0//用戶唯一ID
     cfgid=0//所属配置ID
     uni_c
-    //初始位置
+    
     reverse=1//反向 1不反  -1反
     toward=4//初始化时候朝向4 或者2
     action=0//动作

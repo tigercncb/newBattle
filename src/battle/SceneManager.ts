@@ -75,11 +75,11 @@ class SceneManager extends Laya.Sprite {
 	{
 		//玩家选择加速
 		var loopnum:number = BattleConfig.PLAY_SPEED_PLAYER;
-		//计算加速状态 直接使用计算加速 不适用玩家加速
-		if(this.battleData.speedup!=1)
-		{
-			loopnum = 1;
-		}
+		// //计算加速状态 直接使用计算加速 不适用玩家加速
+		// if(this.battleData.speedup!=1)
+		// {
+		// 	loopnum = 1;
+		// }
 		if(Laya.stage.frameRate == Laya.Stage.FRAME_SLOW)
 		{
 			loopnum = loopnum*2;
