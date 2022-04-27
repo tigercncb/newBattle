@@ -43,6 +43,12 @@ class BattleLogic {
 			}
 		}
 	}
+	/**
+	 * FIXME:刷新攻击目标
+	 * 刷新攻击目标(建议一秒刷新一次)
+	 * @param	battleData 战场数据
+	 * @param	atkData 
+	 */
 	public static atkTargetRefresh(battleData:BattleData,atkData:Player):Player
 	{
 		//var index:string = atkData.uni_c;
@@ -96,5 +102,19 @@ class BattleLogic {
 			}
 		}
 		return atkTarget
+	}
+	/**
+	 * 获取弹道飞行时间
+	 * @return number 飞行时间 
+	 */
+	public static getBullteFlyParams(x:number,y:number,tx:number,ty:number,atk_dir:number,atk_w_half:number,atk_h:number,def_h:number,flyspd:number):number
+	{
+		var bullte_x:number = x;
+		var bullte_y:number = y-atk_h*2/3;
+		var bullte_tx:number = tx;
+		var bullte_ty:number = ty-def_h*2/3;
+		var dis:number = BattleFormula.calcDistance(bullte_x,bullte_y,bullte_tx,bullte_ty);
+		var flaytime:number = dis/flyspd*100;
+		return flaytime;
 	}
 }

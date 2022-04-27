@@ -22,6 +22,7 @@ class BattleScene extends Laya.Sprite
         this.bui.start.on(Laya.Event.CLICK,this,this.startBattle)
         this.bui.skip.on(Laya.Event.CLICK,this,this.skipBattle)
         this.bui.reset.on(Laya.Event.CLICK,this,this.resetBattle)
+        this.bui.btn_speed.on(Laya.Event.CLICK,this,this.changeSpped)
     }
     addmap()
     {
@@ -44,6 +45,9 @@ class BattleScene extends Laya.Sprite
     addunit(player:Player,isreset,needrun)
     {
         player.init(this.PlayerLayer())
+        let lab:Laya.Label=new Laya.Label()
+        lab.text=player.playerCfg.heroname
+        player.addName(lab)
         if(needrun)
         {
             let x_run;
@@ -52,11 +56,11 @@ class BattleScene extends Laya.Sprite
             {
                 x_run = - BattleConfig.BEGIN_RUN_IN_X;
 				y_run = - BattleConfig.BEGIN_RUN_IN_Y;
-                player.setPos(player.x+x_run,player.y+y_run)
+                player.set_pos(player.x+x_run,player.y+y_run)
             }else{
                 x_run =  BattleConfig.BEGIN_RUN_IN_X;
 				y_run =  BattleConfig.BEGIN_RUN_IN_Y;
-                player.setPos(player.x+x_run,player.y+y_run)
+                player.set_pos(player.x+x_run,player.y+y_run)
             }
         }
     }
@@ -106,10 +110,19 @@ class BattleScene extends Laya.Sprite
     {
         SceneManager.instance().battleinit()
     }
+    private autoSpeed=1
+    private changeSpped()
+    {
+        this.autoSpeed++
+        if(this.autoSpeed>3)this.autoSpeed=1
+        BattleConfig.PLAY_SPEED_PLAYER = BattleConfig.PLAY_SPEED[this.autoSpeed-1];
+        this.bui.btn_speed.label="X"+ BattleConfig.PLAY_SPEED_PLAYER
+    }
     private skipBattle()
     {
 
     }
+    //重置 ，未实现
     private resetBattle()
     {
        this.addUnits(true)

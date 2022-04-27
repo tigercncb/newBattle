@@ -1,6 +1,6 @@
 class BattleData
 {
-    public speedup:number = 1;				//跳帧运算 为了计算效率某些战斗会进行跳帧计算 跳帧计算的时候动画播放速度必须和计算速度匹配  玩家无法调整播放速度
+    // public speedup:number = 1;				//跳帧运算 为了计算效率某些战斗会进行跳帧计算 跳帧计算的时候动画播放速度必须和计算速度匹配  玩家无法调整播放速度
 
     public playType:number = 1;				//1正常战斗 2模拟战斗 3战报回放 0测试战斗
     mapId=0
@@ -20,9 +20,10 @@ class BattleData
 
     public addIsAtk:boolean = true; 		//只有多队伍战斗有 新上场队伍  true 左边上场 false 右边上场
 
-    public uni_c=0;
 
     public infotData:EntityData//属性
+
+	AniMap={}
     mapdata:any;
     clean()
     {
@@ -32,6 +33,7 @@ class BattleData
         this.totalArrDic={}
         this.uni_c_player=1000
         this.uni_c_defend=2000
+		this.AniMap={}
     }	
     public setData(dt)
     {
@@ -76,7 +78,8 @@ class BattleData
 		// }
 		unit.atkDis = unit.atkDisBase;
 		this._atkTargetList[uni_c] = targetUnit.uni_c;
-		unit.toward = BattleFormula.calcDir(unit.x, unit.y, targetUnit.x, targetUnit.y);
+		unit.reverse = BattleFormula.calcEeverse(unit.x, unit.y, targetUnit.x, targetUnit.y);
+		unit.toward=BattleFormula.calcToward(unit.x, unit.y, targetUnit.x, targetUnit.y);
 		unit.inplace=false;
     }
     //获取当前攻击目标

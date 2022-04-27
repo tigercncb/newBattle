@@ -14,20 +14,20 @@ class Player extends Entity {
     spdframe:number = 1;  	//每帧移动速度 像素 目前按照60帧计算
     speed=0;//移动速度
     atkInterval:number;  	//攻击间隔
+    isAttking=false;//是否在攻击中
     defPos = [[908, 216], [992, 326], [836, 91], [1082, 144], [1149, 259], [1006, 15]]
     atkPos = [[234, 530], [318, 640], [162, 405], [118, 592], [185, 707], [42, 463]]
     inplace:boolean=false;//是否已经到达预定位置
     //战斗过程中 位置朝向相关
-    _x: number;	//当前位置x
-    _y: number;	//当前位置y
+    // _x: number;	//当前位置x
+    // _y: number;	//当前位置y
 
     x_old: number = -1;	//几帧前的位置
     y_old: number = -1;	//几帧前的位置
-    tx: number;	//目标位置
-    ty: number;	//目标位置
+    // tx: number;	//目标位置
+    // ty: number;	//目标位置
     isRuning=false;//是否在移动中
     public isTeamPlay: boolean = false;		//合击动作中
-    public isAtking: boolean = false;		//是否正在播放攻击动作
     //public isHiting:boolean = false;
     //public isDying:boolean = false;			//是否正在播放死亡动作
     public dieState: number = 0;				//0未开始 1做死亡动作 2渐隐 3渐隐结束
@@ -35,16 +35,24 @@ class Player extends Entity {
     public baseScale: number = 1;
 
     private container: Laya.Sprite
-    public changeaction(action: actionState)  {
-        // if(action==this.action)return
-        this.action=action
-        this.loadAni(action, this.toward)
+   private atkDelay=0;
+    //播放攻击动画
+    public playAtk()
+    {
+        if(this.uni_c==1004)console.log("当前攻击"+this.uni_c+":"+this.atkDelay)
+        this.isAttking=true;
+        this.changeaction(actionState.fight)
     }
-    //设置当前坐标
-    public setPos(x, y)  {
-        this._x = x;
-        this._y = y;
-        super.set_pos(x, y)
+    //结束攻击动画
+    private endAni()
+    {
+        if(this.action==actionState.fight)  
+        {
+            if(this.uni_c==1004)console.log("当前站立"+this.uni_c+":"+this.atkDelay)
+            this.atkDelay =this.atkInterval/BattleConfig.PLAY_SPEED_PLAYER
+            this.changeaction(actionState.idle)
+            this.isAttking=false
+        }
     }
     //战前初始化位置朝向
     public station
@@ -65,21 +73,68 @@ class Player extends Entity {
         t.station = posArr[t.place - 1];
         t.changeaction(actionState.idle)
         t.container.addChild(t);
-        t.setPos(t.station[0], t.station[1])
+        t.set_pos(t.station[0], t.station[1])
         let cfg=this.playerCfg;
         this.atkDis=cfg.atkDis
         this.atkDisBest=this.atkDisBase=cfg.atkDisBase
-        
+        this.atkInterval=cfg.atkTimeCountdown;
+        this.playEndendHandler=Laya.Handler.create(this,this.endAni,[],false)
     }
     /**
+     * 365行BattleUnitData
 	 * 循环处理 处理各种事件 攻击僵直 受击僵直 攻击间隔 复活时间 技能倒计时
 	 * @param when:string 触发条件BattleSkillConfig WHEN配置
 	 * @return 
 	 */
-    public fmloop(proc:BattleProcessControler,frameNum:number)
+    
+    public fmloop(proc:BattleProcessControler)
     {
         //BattleunitData 第371行
-     var loopTime:number = BattleConfig.BATTLE_LOOP_TIME * frameNum;
+        if(this.x_old==-1)
+        {
+            this.x_old = this.x;
+			this.y_old = this.y;
+        }else{
+            this.toward=BattleFormula.calcToward(this.x_old,this.y_old,this.x,this.y)
+            this.reverse=BattleFormula.calcEeverse(this.x_old,this.y_old,this.x,this.y)
+        }
+        // let jiange =this.atkInterval/BattleConfig.PLAY_SPEED_PLAYER;//速度越快，间隔越短
+        
+        // let defData:Player = testserver.battleData.getAtkTarget(this.uni_c);
+        if(this.inplace)
+        {
+            if(this.uni_c==1004)console.log("当前间隔"+this.uni_c+":"+this.atkDelay)
+            if(this.isAttking==false)
+            {
+                if(this.atkDelay<=0)
+                {
+                    BattleLogic.atkTargetRefresh(testserver.battleData,this)
+                    this.playAtk()
+                }
+                this.atkDelay--
+            }
+        }else{
+            // var maxSpeed:number =this.spdframe*BattleConfig.PLAY_SPEED_PLAYER;
+            // if(this.isRuning==false)
+            // {
+            //     this.isRuning=true;
+            // }
+            this.changeaction(actionState.run)
+           
+            // this.move(maxSpeed,defData)
+        }
+        
+        // //攻击中,攻击间隔中查找目标
+        // if(this.action==actionState.idle && this.isAttking==true)
+        // {
+        //     this.isAttking=false
+        //     delay++
+        //     if(delay>=jiange)
+        //     {
+        //         BattleLogic.atkTargetRefresh(testserver.battleData,this)
+        //         delay=0
+        //     }
+        // }
     }
     /**
 	 * 能否移动 会判断是否存活 是否在攻击僵直或者受击僵直 或者有不能移动的BUFF
@@ -91,10 +146,7 @@ class Player extends Entity {
 		{
 			return false;
 		}
-        if(this.inatkRange==true)
-        {
-            return false
-        }
+
         return true
 
     }

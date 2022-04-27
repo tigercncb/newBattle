@@ -6,7 +6,7 @@ class playerCfg
         heroname:"近战武将1",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔 帧率
         atkRange:1,//近战
     }
     public static 31={
@@ -15,7 +15,7 @@ class playerCfg
         heroname:"近战武将2",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
     }
     public static 32={
@@ -24,7 +24,7 @@ class playerCfg
         heroname:"近战武将3",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
     }
     public static 33={
@@ -33,7 +33,7 @@ class playerCfg
         heroname:"远战武将4",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:2//远战
     }
     public static 34={
@@ -42,7 +42,7 @@ class playerCfg
         heroname:"远战武将5",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:2//远战
     }
     public static 35={
@@ -51,7 +51,7 @@ class playerCfg
         heroname:"近战武将6",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
     }
     public static 36={
@@ -60,7 +60,7 @@ class playerCfg
         heroname:"近战武将7",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
     }
     public static 37={
@@ -69,7 +69,7 @@ class playerCfg
         heroname:"近战武将8",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
     }
     public static 38={
@@ -78,7 +78,7 @@ class playerCfg
         heroname:"远战武将9",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:2,//近战
     }
     public static 39={
@@ -87,7 +87,7 @@ class playerCfg
         heroname:"远战武将10",
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
-        atkTimeCountdown:0,//攻击间隔
+        atkTimeCountdown:60,//攻击间隔
         atkRange:2,//远战
     }
 }

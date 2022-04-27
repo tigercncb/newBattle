@@ -4,6 +4,7 @@ class GameMain{
     constructor()
     {
         Laya.init(1334,750, WebGL);
+        // Laya.stage.frameRate = Laya.Stage.FRAME_SLOW
         //ios 帧率降到30
 		// if (SysGameConfig.EquipmentPlatform == EquipmentPlatformType.ios) {
 		// 	Laya.stage.frameRate = Laya.Stage.FRAME_SLOW;

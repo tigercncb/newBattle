@@ -6,7 +6,7 @@ class BattlePlayControler {
             BattlePlayControler._inst = new BattlePlayControler();
         return BattlePlayControler._inst;
     }
-    public data
+    public data:BattleData
     public preEndHandler
     /**
 	 * 开始播放战斗 播放顺序 双方进场到达指定位置->阵前喊话->播放开场动画->双方释放开场buff->
@@ -51,10 +51,10 @@ class BattlePlayControler {
     /**
 	 * 喊话 1为开始(喊话结束播放开场动画) 2为结束(喊话结束弹出结算面板)
 	*/
-    private onlytime:number=5;
+    private onlytime:number=3;
 	talkBegin(when:number,first:boolean):void
     {
-        //假设这里停止5秒
+        //假设这里停止3秒
         //备注，源文档有战鼓代码，不确定战鼓是个啥。。暂时未写
         //开始播放进场，播放指定英雄展示等
         //参照 BattlePlayCOntroler.ts第194行
@@ -87,4 +87,17 @@ class BattlePlayControler {
             }
         }
     }
+    //播放死亡
+    playDieByIndex(uni_c:number):void
+	{
+		var unit:Player = this.data.totalUnitsArr[uni_c]
+		//更新UI血条显示
+		// BattleUI.inst.refresh();
+		//更新人物血条
+		// unit.hpbarUpdate(null);
+		//飘字
+		//var textArr:any[] = BattleTextPlay.getSkillText(playData.dodge, playData.crit, playData.prop);
+		//BattleTextPlay.play(this.stage,BattleStage.inst.effLayer, unit, textArr);
+		// this.playDie(unit);
+	}
 }

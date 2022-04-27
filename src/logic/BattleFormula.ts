@@ -1,27 +1,14 @@
 class BattleFormula
 {
     /**
-	 * 计算x到y的朝向							
+	 * 是否翻转						
 	 * @param x1:number 
 	 * @param y1:number 
 	 * @param x2:number
 	 * @param y2:number
 	 * @return dir 朝向 具体见 BattleConfig
 	 */
-	public static calcDir2(x1:number,y1:number,x2:number,y2:number):number
-	{
-		var angle:number = BattleFormula.calAngle(x1,y1,x2,y2);
-		let nA=angle+22.5;
-		if(nA>=-22.5&&nA<22.5) return 1
-		if(nA>=22.5&&nA<67.5) return 1
-		if(nA>=67.5&&nA<112.5) return 1
-		if(nA>=112.5&&nA<157.5) return -1
-		if(nA>=157.5&&nA<202.5) return -1
-		if(nA>=202.5&&nA<247.5) return -1
-		if(nA>=247.5&&nA<292.5) return 1
-		if(nA>=292.5&&nA<337.5) return 1
-	}
-	public static calcDir(x1:number,y1:number,x2:number,y2:number):number
+	public static calcEeverse(x1:number,y1:number,x2:number,y2:number):number
 	{
 		var angle:number = BattleFormula.calAngle(x1,y1,x2,y2)+360+22.5;
 		let a=angle%360
