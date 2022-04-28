@@ -72,7 +72,7 @@ class BattleProcessControler {
             //已经在攻击范围内 308行
             if (unit.inatkRange)  {
                 unit.inplace = true
-                unit.isRuning = false
+                // unit.isRuning = false
                 // unit.changeaction(actionState.fight)
             } else {
                 var maxSpeed:number =unit.spdframe*BattleConfig.PLAY_SPEED_PLAYER;

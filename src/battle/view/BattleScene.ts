@@ -47,6 +47,7 @@ class BattleScene extends Laya.Sprite
         player.init(this.PlayerLayer())
         let lab:Laya.Label=new Laya.Label()
         lab.text=player.playerCfg.heroname
+        lab.color="#ffffff"
         player.addName(lab)
         if(needrun)
         {

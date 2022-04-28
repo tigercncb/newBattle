@@ -37,7 +37,8 @@ class Entity extends Laya.Sprite {
     public addName(lab:Laya.Label)
     {
         this.addChild(lab)
-        lab.x=this.x-lab.width/2
+        lab.x=this.roleAni.x-lab.width/2
+        lab.y=this.roleAni.y
     }
     /**
      * 
@@ -47,7 +48,7 @@ class Entity extends Laya.Sprite {
     public loadAni(actionState = 1) {
         let url="person/person_" + this.cfgid + "/" + actionState + "_" + this.toward + ".atlas"
         // if(this.action==this.action && towardState==this.toward && this.roleAni) return
-        if (!Entity.aniDic[url] || this.curSource!=url)  {
+        if (!Entity.aniDic[url] )  {
              this.curSource = url
             this.roleAni.loadAtlas(url, Laya.Handler.create(this, this.onLoaded,[url]), url);
             
@@ -71,7 +72,7 @@ class Entity extends Laya.Sprite {
         this.y= y
     }
     private onLoaded(url) {
-        this.scaleX = this.reverse
+        this.roleAni.scaleX = this.reverse
         this.roleAni.pivotX = 450
         this.roleAni.pivotY = 450
         this.roleAni.interval = Math.floor(Laya.timer.delta * 5 / BattleConfig.PLAY_SPEED_PLAYER)
