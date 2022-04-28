@@ -83,7 +83,7 @@ class BattleProcessControler {
                 //         unit.isRuning=true
                 //         unit.changeaction(actionState.run)
                 //         return
-                //     }
+                //     }//FIXME:分支测试语句20220428
                     unit.move(maxSpeed,defData)
                 // }
             }
