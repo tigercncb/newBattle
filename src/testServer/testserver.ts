@@ -43,6 +43,8 @@ class testserver
                  testserver.battleData._defArr[place]=testserver.battleData.totalArrDic[testserver.battleData.uni_c_defend]
                  testserver.battleData.uni_c_defend++
             }
+            testserver.battleData.attAliveNum=testserver.battleData._attArr.length
+            testserver.battleData.defAliveNum=testserver.battleData._defArr.length
             player.place=place+1
             player.cfgid=i+30
             testserver.battleData.totalUnitsArr[testserver.battleData.totalUnitsArr.length]=player

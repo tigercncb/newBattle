@@ -64,11 +64,11 @@ class SceneManager extends Laya.Sprite {
     public beginBattlLoop():void
 	{
 		Laya.timer.loop(BattleConfig.BATTLE_FRAME_LOOP_TIME,this,this.frameLoop);
-		Laya.timer.frameLoop(1,this,this.frameLoopNew);
+		// Laya.timer.frameLoop(1,this,this.frameLoopNew);
 	}
     public frameLoopNew():void
 	{
-		BattleTimer.instance()._update();
+		// BattleTimer.instance()._update();
 		//BattleScene.battleTimer._update();
 	}
     public frameLoop():void
@@ -94,7 +94,11 @@ class SceneManager extends Laya.Sprite {
 			// }
 		}
 	}
-    public battleEnd(exit: boolean = false): void {
-
+    public battleEnd(dt): void {
+        Laya.timer.clear(this,this.frameLoop)
+        let txt=""
+        if(dt==1)txt="攻方胜利"
+        if(dt==2)txt="防守方胜利"
+        this.bc.battleui().over.text=txt
     }
 }

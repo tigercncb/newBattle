@@ -63,7 +63,6 @@ class BattlePlayControler {
             // if(first)
             // {
                 SceneManager.instance().bc.bui.over.text=this.onlytime+""
-                SceneManager.instance().bc.bui.over.visible=true
                 Laya.timer.loop(1000,this,this.onloop)
             // }
         }else{
@@ -78,7 +77,7 @@ class BattlePlayControler {
         if(this.onlytime<=0)
         {
             Laya.timer.clear(this,this.onloop)
-            SceneManager.instance().bc.bui.over.visible=false
+            SceneManager.instance().bc.bui.over.text=""
             if(this.preEndHandler)
             {
                 this.preEndHandler.run();
@@ -90,7 +89,11 @@ class BattlePlayControler {
     //播放死亡
     playDieByIndex(uni_c:number):void
 	{
-		var unit:Player = this.data.totalUnitsArr[uni_c]
+		var unit:Player = this.data.totalArrDic[uni_c]
+        if(unit.alive==false)
+        {
+            unit.playDie()
+        }
 		//更新UI血条显示
 		// BattleUI.inst.refresh();
 		//更新人物血条

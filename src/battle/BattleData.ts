@@ -6,14 +6,16 @@ class BattleData
     mapId=0
     static unitcount:number = 0; 			//战斗单元计数，其他参数中的 uni_c
 	public state:number = 0;				//战斗状态 0还未开始或者播放开场动画中 1战斗进行中 2切换下一队 -1战斗结束
-    public totalArrDic:any={}//所有单元
     //假定在战场唯一ID起始位
     public uni_c_player=1000
     public uni_c_defend=2000
 
 
+    public totalArrDic:any={}//所有单元
     public _attArr:any[]		= [];					 //攻方单元
+	public attAliveNum=0;
 	public _defArr:any[]		= [];					 //守方单元
+	public defAliveNum=0;
 	public totalUnitsArr:Player[] = []; //所有单元数组
     // atkBaseNow:Entity =  new Entity(); //攻方基础数据
 	// defBaseNow:Entity =  new Entity(); //守方基础数据
@@ -35,6 +37,19 @@ class BattleData
         this.uni_c_defend=2000
 		this.AniMap={}
     }	
+	public isWin()//0无  1攻方 2防守方
+	{
+		let result=0;
+		let t=this;
+		this._attArr.forEach((e)=>{
+			if(e.alive)result++
+		})
+		if(result>0) return 1
+		this._defArr.forEach((e)=>{
+			if(e.alive)result++
+		})
+		if(result>0) return 2
+	}
     public setData(dt)
     {
         if(!this.infotData){

@@ -2,10 +2,10 @@
 class BattleProcessControler {
     public playControl: BattlePlayControler;
     public battleData: BattleData;
-    public endCallBack;
+    public endCallBack:Laya.Handler;
     public quickEnd;
 
-    init(data: BattleData, endCallBack: any, quickEnd = false)  {
+    init(data: BattleData, endCallBack: Laya.Handler, quickEnd = false)  {
         this.battleData = data;
         this.endCallBack = endCallBack;
         this.quickEnd = quickEnd;
@@ -47,9 +47,11 @@ class BattleProcessControler {
             let unit: Player = this.battleData.totalUnitsArr[i]
             unit.fmloop(this)
             //播放死亡动画
-            if (unit.alive == false)  {
+            if (unit.alive == false && unit.isShow)  {
                 if (this.playControl)  {
                     this.playControl.playDieByIndex(unit.uni_c)
+                    let iswin=this.battleData.isWin()
+                    if(iswin>0)this.endCallBack.runWith(iswin)
                 }
                 continue;
             }
@@ -59,6 +61,7 @@ class BattleProcessControler {
                 defData = BattleLogic.atkTargetRefresh(this.battleData, unit);
                 if (defData == null)  {
                     unit.inplace = true;
+                    unit.changeaction(actionState.idle)
                     continue;
                 }
             }
@@ -74,6 +77,14 @@ class BattleProcessControler {
                 unit.inplace = true
                 // unit.isRuning = false
                 // unit.changeaction(actionState.fight)
+                if(unit.isAttking)
+                {
+                    if(defData.alive && unit.canChaneHp)
+                    {
+                        defData.changeHp(-unit.atk)
+                        unit.canChaneHp=false
+                    }
+                }
             } else {
                 var maxSpeed:number =unit.spdframe*BattleConfig.PLAY_SPEED_PLAYER;
                 // if(unit.inplace==false)
@@ -87,9 +98,8 @@ class BattleProcessControler {
                     unit.move(maxSpeed,defData)
                 // }
             }
+            
         }
-
-
 
     }
     //释放技能

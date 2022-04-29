@@ -14,13 +14,15 @@ class Player extends Entity {
     spdframe:number = 1;  	//每帧移动速度 像素 目前按照60帧计算
     speed=0;//移动速度
     atkInterval:number;  	//攻击间隔
-    isAttking=false;//是否在攻击中
     defPos = [[908, 216], [992, 326], [836, 91], [1082, 144], [1149, 259], [1006, 15]]
     atkPos = [[234, 530], [318, 640], [162, 405], [118, 592], [185, 707], [42, 463]]
     inplace:boolean=false;//是否已经到达预定位置
     //战斗过程中 位置朝向相关
     // _x: number;	//当前位置x
     // _y: number;	//当前位置y
+
+    isAttking=false;//是否在攻击中
+    isDieing=false;//是否在播放死亡动画
 
     x_old: number = -1;	//几帧前的位置
     y_old: number = -1;	//几帧前的位置
@@ -36,6 +38,12 @@ class Player extends Entity {
 
     private container: Laya.Sprite
    private atkDelay=0;
+
+
+   //测试用
+   maxHp
+   nowHp
+   atk
     //播放攻击动画
     public playAtk()
     {
@@ -43,16 +51,36 @@ class Player extends Entity {
         this.isAttking=true;
         this.changeaction(actionState.fight)
     }
-    //结束攻击动画
+    public playDie()
+    {
+        if(this.alive==false &&this.isDieing==false)
+        {
+            this.changeaction(actionState.die)
+            this.isDieing=true
+        }
+    }
+    public canChaneHp=false
+    //结束动画
     private endAni()
     {
-        if(this.action==actionState.fight)  
+        if(this.isAttking==true)  
         {
             if(this.uni_c==1004)console.log("当前站立"+this.uni_c+":"+this.atkDelay)
             this.atkDelay =this.atkInterval/BattleConfig.PLAY_SPEED_PLAYER
             this.changeaction(actionState.idle)
             this.isAttking=false
+            this.canChaneHp=true
         }
+        if(this.isDieing==true)
+        {
+            this.resetProp()
+            this.visible=false;
+            this.isDieing=false;
+        }
+    }
+    private resetProp()
+    {
+
     }
     //战前初始化位置朝向
     public station
@@ -78,7 +106,10 @@ class Player extends Entity {
         this.atkDis=cfg.atkDis
         this.atkDisBest=this.atkDisBase=cfg.atkDisBase
         this.atkInterval=cfg.atkTimeCountdown;
+        this.nowHp=this.maxHp=cfg.maxHp
+        this.atk=cfg.Atk
         this.playEndendHandler=Laya.Handler.create(this,this.endAni,[],false)
+        this.changeHp(0)
     }
     /**
      * 365行BattleUnitData
@@ -160,6 +191,22 @@ class Player extends Entity {
 
         this.x+=(defdata.x-this.x)/time
         this.y+=(defdata.y-this.y)/time
+    }
+    /**
+     * 血量变更
+     * @param value 变动值
+     */
+    public changeHp(value)
+    {
+        
+        this.nowHp+=value
+        if(this.bloodview)
+        {
+            this.bloodview.blood_txt.text=this.nowHp+"/"+this.maxHp
+            this.bloodview.blood.width=Math.ceil(this.nowHp/this.maxHp*75)
+        }
+        this.alive=this.nowHp>0
+        
     }
     public get playerCfg()  {
         return playerCfg[this.cfgid]

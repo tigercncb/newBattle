@@ -44,11 +44,13 @@ class BattleScene extends Laya.Sprite
     }
     addunit(player:Player,isreset,needrun)
     {
-        player.init(this.PlayerLayer())
         let lab:Laya.Label=new Laya.Label()
         lab.text=player.playerCfg.heroname
         lab.color="#ffffff"
         player.addName(lab)
+        let blood:ui.gameui.bloodUI=new ui.gameui.bloodUI();
+        player.addBlood(blood)
+        player.init(this.PlayerLayer())
         if(needrun)
         {
             let x_run;

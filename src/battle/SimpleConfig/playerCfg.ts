@@ -8,6 +8,8 @@ class playerCfg
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔 帧率
         atkRange:1,//近战
+        maxHp:100,
+        Atk:30
     }
     public static 31={
         atkDis:50,
@@ -17,6 +19,8 @@ class playerCfg
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
+        maxHp:100,
+        Atk:20
     }
     public static 32={
         atkDis:50,
@@ -26,6 +30,8 @@ class playerCfg
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
+        maxHp:100,
+        Atk:40
     }
     public static 33={
         atkDis:400,
@@ -34,7 +40,9 @@ class playerCfg
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
-        atkRange:2//远战
+        atkRange:2,//远战
+        maxHp:100,
+        Atk:10
     }
     public static 34={
         atkDis:300,
@@ -43,7 +51,9 @@ class playerCfg
         _spdframe: 1,  	//每帧移动速度 像素 目前按照60帧计算
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
-        atkRange:2//远战
+        atkRange:2,//远战
+        maxHp:100,
+        Atk:15
     }
     public static 35={
         atkDis:50,
@@ -53,6 +63,8 @@ class playerCfg
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
+        maxHp:100,
+        Atk:20
     }
     public static 36={
         atkDis:50,
@@ -62,6 +74,8 @@ class playerCfg
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
+        maxHp:100,
+        Atk:15
     }
     public static 37={
         atkDis:50,
@@ -71,6 +85,8 @@ class playerCfg
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
         atkRange:1,//近战
+        maxHp:100,
+        Atk:20
     }
     public static 38={
         atkDis:400,
@@ -80,6 +96,8 @@ class playerCfg
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
         atkRange:2,//近战
+        maxHp:100,
+        Atk:25
     }
     public static 39={
         atkDis:400,
@@ -89,5 +107,7 @@ class playerCfg
 	    spd_buff: 1,	//buff对移动速度影响
         atkTimeCountdown:60,//攻击间隔
         atkRange:2,//远战
+        maxHp:100,
+        Atk:15
     }
 }

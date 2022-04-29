@@ -9,9 +9,11 @@ class Entity extends Laya.Sprite {
     // entity_Type = 1;//实体类型 1角色，2其他物体
     public _isPause: boolean = false;//是否暂停
     private _curFrame = 0//当前播放到那一帧
-     _loop: boolean = true;
+    _loop: boolean = true;
     private static aniDic = {}//动画缓存
-    private curSource=""//当前动画路径
+    private curSource = ""//当前动画路径
+
+    isShow = true;//默认显示物体
     //播放结束回调
     private endHandler: Laya.Handler;
     public set playEndendHandler(handler: Laya.Handler) {
@@ -34,11 +36,15 @@ class Entity extends Laya.Sprite {
         this.action = action
         this.loadAni(action)
     }
-    public addName(lab:Laya.Label)
-    {
+    public addName(lab: Laya.Label)  {
         this.addChild(lab)
-        lab.x=this.roleAni.x-lab.width/2
-        lab.y=this.roleAni.y
+        lab.x = this.roleAni.x - lab.width / 2
+        lab.y = this.roleAni.y
+    }
+    public bloodview: ui.gameui.bloodUI
+    public addBlood(view)  {
+        this.bloodview = view
+        this.addChild(view)
     }
     /**
      * 
@@ -46,30 +52,33 @@ class Entity extends Laya.Sprite {
      * @param towardState 方向号
      */
     public loadAni(actionState = 1) {
-        let url="person/person_" + this.cfgid + "/" + actionState + "_" + this.toward + ".atlas"
+        let url = "person/person_" + this.cfgid + "/" + actionState + "_" + this.toward + ".atlas"
         // if(this.action==this.action && towardState==this.toward && this.roleAni) return
-        if (!Entity.aniDic[url] )  {
-             this.curSource = url
-            this.roleAni.loadAtlas(url, Laya.Handler.create(this, this.onLoaded,[url]), url);
-            
-        } else{
-            if(this.curSource==url)return
-             this.curSource = url
+        if (!Entity.aniDic[url]) {
+            this.curSource = url
+            this.roleAni.loadAtlas(url, Laya.Handler.create(this, this.onLoaded, [url]), url);
+
+        } else {
+            if (this.curSource == url) return
+            this.curSource = url
             this.doPlay()
         }
-       
-        
+        this.refreshOther()
     }
-    private doPlay()
-    {
-        if(Entity.aniDic[this.curSource])
-        {
-            this.roleAni.play(this._curFrame,this._loop,this.curSource)
+    private refreshOther()  {
+        if (this.bloodview)  {
+            this.bloodview.x = this.roleAni.x - this.bloodview.width / 2
+            this.bloodview.y = -80
+        }
+    }
+    private doPlay()  {
+        if (Entity.aniDic[this.curSource])  {
+            this.roleAni.play(this._curFrame, this._loop, this.curSource)
         }
     }
     public set_pos(x, y) {
         this.x = x
-        this.y= y
+        this.y = y
     }
     private onLoaded(url) {
         this.roleAni.scaleX = this.reverse
@@ -80,8 +89,7 @@ class Entity extends Laya.Sprite {
         this.doPlay()
         this.roleAni.on(Laya.Event.COMPLETE, this, this.playEndCall);
     }
-    public playAni(frmae:number,isLoop)
-    {
+    public playAni(frmae: number, isLoop)  {
 
     }
     private playEndCall() {
@@ -104,15 +112,15 @@ class Entity extends Laya.Sprite {
     public resume() {
         if (!this.roleAni) return;
         if (this._isPause == true) {
-            this.roleAni.play(this._curFrame,this._loop)
+            this.roleAni.play(this._curFrame, this._loop)
             this._isPause = false
         }
     }
     public clean() {
         if (this.roleAni) {
             this.roleAni.clear()
-             Entity.aniDic[this.roleAni.source]=null
-             this.roleAni.off(Laya.Event.COMPLETE, this, this.playEndCall);
+            Entity.aniDic[this.roleAni.source] = null
+            this.roleAni.off(Laya.Event.COMPLETE, this, this.playEndCall);
         }
         this.endHandler = null;
     }

@@ -34,3 +34,20 @@ module ui.gameui {
 
     }
 }
+
+module ui.gameui {
+    export class bloodUI extends View {
+		public blood:Laya.Image;
+		public blood_txt:Laya.Label;
+
+        public static  uiView:any ={"type":"View","props":{"width":80,"height":11},"child":[{"type":"Image","props":{"y":0,"x":0,"width":80,"skin":"comp/bg_hp_02.png","sizeGrid":"5,17,5,16","height":11}},{"type":"Image","props":{"y":3,"x":3,"width":75,"var":"blood","skin":"comp/bg_hp_01.png","height":5}},{"type":"Label","props":{"width":80,"var":"blood_txt","text":"999/999","fontSize":10,"color":"#ffffff","align":"center"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.gameui.bloodUI.uiView);
+
+        }
+
+    }
+}
