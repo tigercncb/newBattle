@@ -42,13 +42,13 @@ class BattleData
 		let result=0;
 		let t=this;
 		this._attArr.forEach((e)=>{
-			if(e.alive)result++
+			if(e.alive==false && e.isDieing==false)result++
 		})
-		if(result>0) return 1
+		if(result>=this._attArr.length) return 2
 		this._defArr.forEach((e)=>{
-			if(e.alive)result++
+			if(e.alive==false && e.isDieing==false)result++
 		})
-		if(result>0) return 2
+		if(result>=this._defArr.length) return 1
 	}
     public setData(dt)
     {

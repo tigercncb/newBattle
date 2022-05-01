@@ -5,7 +5,6 @@ class Player extends Entity {
     isAttk = true//是否攻击方
     isPlayGroup = true//是否是玩家队伍
     isChief = 0//是否放大
-    alive:boolean = true;	//是否活着
     atkDis: number;			//攻击距离(像素) 最远 (被阻挡时攻击距离有加成)
     atkDisBase: number;		//默认攻击距离
     atkDisBest: number;		//最佳攻击距离
@@ -21,19 +20,19 @@ class Player extends Entity {
     // _x: number;	//当前位置x
     // _y: number;	//当前位置y
 
-    isAttking=false;//是否在攻击中
+    alive:boolean = true;	//是否活着
+    isAttking=false;//是否在播放攻击中
     isDieing=false;//是否在播放死亡动画
+    isRuning=false;//是否在播放移动中
+    isWining: boolean = false;		//是否正在播放胜利动作
 
     x_old: number = -1;	//几帧前的位置
     y_old: number = -1;	//几帧前的位置
     // tx: number;	//目标位置
     // ty: number;	//目标位置
-    isRuning=false;//是否在移动中
     public isTeamPlay: boolean = false;		//合击动作中
     //public isHiting:boolean = false;
-    //public isDying:boolean = false;			//是否正在播放死亡动作
     public dieState: number = 0;				//0未开始 1做死亡动作 2渐隐 3渐隐结束
-    public isWining: boolean = false;		//是否正在播放胜利动作
     public baseScale: number = 1;
 
     private container: Laya.Sprite
@@ -121,6 +120,7 @@ class Player extends Entity {
     public fmloop(proc:BattleProcessControler)
     {
         //BattleunitData 第371行
+        if(this.alive==false)return
         if(this.x_old==-1)
         {
             this.x_old = this.x;
